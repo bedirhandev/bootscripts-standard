@@ -1,3 +1,9 @@
+jim - October 16, 2007
+	* Merged BLFS scripts
+	* Fixed Makefile
+	* Changed install to install-bootscripts
+	* Changed minimal to install-minimal
+
 jim - September 10, 2007
 	* Moved udev script from udev package since udev package is no longer required
 

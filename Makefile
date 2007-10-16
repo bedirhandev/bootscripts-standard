@@ -5,7 +5,10 @@ MODE=754
 DIRMODE=755
 CONFMODE=644
 
-all: install
+all:
+	@grep "^install" Makefile | cut -d ":" -f 1
+	@echo "Select an appropriate install target from the above list" ; exit 1
+
 
 create-dirs:
 	install -d -m ${DIRMODE} ${EXTDIR}/rc.d/rc{0,1,2,3,4,5,6,sysinit}.d
@@ -50,7 +53,7 @@ mknod_devices: udev_device_dirs
 		fi \
 	fi
 
-install: create-dirs create-service-dir udev_device_dirs udev_device_links
+install-bootscripts: create-dirs create-service-dir udev_device_dirs udev_device_links
 
 	install -m ${MODE} clfs/init.d/checkfs       ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/cleanfs       ${EXTDIR}/rc.d/init.d/
@@ -125,7 +128,7 @@ install-consolelog: create-dirs
 install-service-mtu: create-service-dir
 	install -m ${MODE} contrib/sysconfig/network-devices/services/mtu ${EXTDIR}/sysconfig/network-devices/services
 
-minimal: create-dirs create-service-dir udev_device_dirs udev_device_links
+install-minimal: create-dirs create-service-dir udev_device_dirs udev_device_links
 	sed -e 's|/bin:/usr/bin:/sbin:/usr/sbin|/tools/bin:/tools/sbin:/bin:/sbin|g' clfs/init.d/functions > clfs/init.d/functions.minimal
 	install -m ${MODE} clfs/init.d/checkfs       		${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/cleanfs       		${EXTDIR}/rc.d/init.d/
@@ -182,11 +185,6 @@ install-raq3:
 
 install-lcd: 
 	if [ ! -f ${EXTDIR}/sysconfig/lcd          ]; then install -m ${CONFMODE} clfs/sysconfig/lcd        ${EXTDIR}/sysconfig/lcd; fi
-
-# The grep can probably be improved upon.
-all:
-	@grep "^install" Makefile | cut -d ":" -f 1
-	@echo "Select an appropriate install target from the above list" ; exit 1
 
 install-service-dhclient: create-service-dir
 	install -m ${MODE} cblfs/sysconfig/network-devices/services/dhclient ${EXTDIR}/sysconfig/network-devices/services
