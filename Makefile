@@ -9,7 +9,6 @@ all:
 	@grep "^install" Makefile | cut -d ":" -f 1
 	@echo "Select an appropriate install target from the above list" ; exit 1
 
-
 create-dirs:
 	install -d -m ${DIRMODE} ${EXTDIR}/rc.d/rc{0,1,2,3,4,5,6,sysinit}.d
 	install -d -m ${DIRMODE} ${EXTDIR}/rc.d/init.d
