@@ -15,7 +15,7 @@
 getipstats()
 {
 	# Print the last 16 lines of dhclient.leases
-	sed -e :a -e '$q;N;17,$D;ba' /var/state/dhcp//dhclient.leases
+	sed -e :a -e '$q;N;17,$D;ba' /var/state/dhcp/dhclient.leases
 }
 
 case "$2" in
@@ -66,8 +66,7 @@ case "$2" in
 
 	down)
 		boot_mesg "Stoping dhclient on the $1 interface..."
-		if [ "$DHCP_STOP" = "" ]
-		then
+		if [ "$DHCP_STOP" = "" ]; then
 			# This breaks multiple interfaces please provide
 			# the correct stop arguments.
 			killproc dhclient

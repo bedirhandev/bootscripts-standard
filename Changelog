@@ -1,3 +1,7 @@
+jim - October 23, 2007
+	* Merged BLFS changes from SVN
+	* Merged LFS changes from SVN
+
 jim - October 16, 2007
 	* Merged BLFS scripts
 	* Fixed Makefile

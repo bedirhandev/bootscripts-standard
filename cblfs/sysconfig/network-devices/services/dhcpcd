@@ -5,26 +5,24 @@
 # Rewritten by Nathan Coulson <nathan@linuxfromscratch.org>
 # Adapted for dhcpcd by DJ Lucas <dj@lucasit.com>
 
-#$LastChangedBy: dj $
-#$Date: 2007-08-21 23:09:21 -0500 (Tue, 21 Aug 2007) $
+#$LastChangedBy$
+#$Date$
 
 . /etc/sysconfig/rc
 . $rc_functions
 . $IFCONFIG
 
-PIDFILE="/var/run/dhcpcd-$1.pid"
-LEASEINFO="/var/lib/dhcpcd/dhcpcd-$1.info"
+pidfile="/var/run/dhcpcd-$1.pid"
+leaseinfo="/var/lib/dhcpcd/dhcpcd-$1.info"
 
 case "$2" in
 	up)
 		boot_mesg -n "Starting dhcpcd on the $1 interface..."
 		# Test to see if there is a stale pid file
-		if [ -f "$PIDFILE" ]
-		then
-			ps `cat "$PIDFILE"` | grep dhcpcd > /dev/null
-			if [ $? != 0 ]
-			then
-				rm -f $PIDFILE > /dev/null
+		if [ -f "$pidfile" ]; then
+			ps `cat "$pidfile"` | grep dhcpcd > /dev/null
+			if [ $? != 0 ]; then
+				rm -f $pidfile > /dev/null
 			else
 				boot_mesg "dhcpcd already running!" ${WARNING}
 				echo_warning
@@ -36,7 +34,7 @@ case "$2" in
 		RET="$?"
 		# Print the assigned settings if requested
 		if [ "$RET" = "0" -a "$PRINTIP" = "yes" ]; then
-			. $LEASEINFO
+			. $leaseinfo
 			if [ "$PRINTALL" = "yes" ]; then
 				echo ""
 				echo_ok
@@ -63,10 +61,9 @@ case "$2" in
 
 	down)
 		boot_mesg -n "Stopping dhcpcd on the $1 interface..."
-		if [ -z "$DHCP_STOP" ]
-		then
+		if [ -z "$DHCP_STOP" ]; then
 			echo ""
-			killproc -p "$PIDFILE" /sbin/dhcpcd
+			killproc -p "$pidfile" /sbin/dhcpcd
 		else
 			/sbin/dhcpcd $1 $DHCP_STOP &> /dev/null
 			RET="$?"
@@ -90,3 +87,4 @@ case "$2" in
 esac
 
 # End $network_devices/services/dhcpcd
+
