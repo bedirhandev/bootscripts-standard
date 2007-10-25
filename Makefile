@@ -196,14 +196,14 @@ install-service-pppoe: create-service-dir
 
 install-netboot:
 	install -d -m ${DIRMODE} ${EXTDIR}/rc.d
-	install -m ${MODE} netboot/rc0.d       ${EXTDIR}/rc.d/
-	install -m ${MODE} netboot/rc1.d       ${EXTDIR}/rc.d/
+	install -m ${MODE} netboot/rc0         ${EXTDIR}/rc.d/
+	install -m ${MODE} netboot/rc1         ${EXTDIR}/rc.d/
 	install -m ${MODE} netboot/rcsysinit.d ${EXTDIR}/rc.d/
-	ln -sf ../rc.d/rc0.d ${EXTDIR}/rc.d/rc6.d
-	ln -sf ../rc.d/rc1.d ${EXTDIR}/rc.d/rc2.d
-	ln -sf ../rc.d/rc1.d ${EXTDIR}/rc.d/rc3.d
-	ln -sf ../rc.d/rc1.d ${EXTDIR}/rc.d/rc4.d
-	ln -sf ../rc.d/rc1.d ${EXTDIR}/rc.d/rc5.d
+	ln -sf ../rc.d/rc0 ${EXTDIR}/rc.d/rc6
+	ln -sf ../rc.d/rc1 ${EXTDIR}/rc.d/rc2
+	ln -sf ../rc.d/rc1 ${EXTDIR}/rc.d/rc3
+	ln -sf ../rc.d/rc1 ${EXTDIR}/rc.d/rc4
+	ln -sf ../rc.d/rc1 ${EXTDIR}/rc.d/rc5
 
 install-alsa: create-dirs
 	install -m ${MODE} cblfs/init.d/alsa       ${EXTDIR}/rc.d/init.d/
