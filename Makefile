@@ -199,6 +199,7 @@ install-netboot:
 	install -m ${MODE} netboot/rc.0         ${EXTDIR}/rc.d/
 	install -m ${MODE} netboot/rc.1         ${EXTDIR}/rc.d/
 	install -m ${MODE} netboot/rc.sysinit ${EXTDIR}/rc.d/
+	if [ ! -f ${EXTDIR}/inittab ]; then install -m ${CONFMODE} netboot/inittab ${EXTDIR}/inittab; fi
 	ln -sf ../rc.d/rc.0 ${EXTDIR}/rc.d/rc.6
 	ln -sf ../rc.d/rc.1 ${EXTDIR}/rc.d/rc.2
 	ln -sf ../rc.d/rc.1 ${EXTDIR}/rc.d/rc.3
