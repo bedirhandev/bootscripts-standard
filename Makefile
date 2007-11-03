@@ -728,6 +728,16 @@ uninstall-bind:
 	rm -f ${EXTDIR}/rc.d/rc5.d/S22bind
 	rm -f ${EXTDIR}/rc.d/rc6.d/K49bind
 
+uninstall-cluster-all:
+	rm -f ${EXTDIR}/rc.d/init.d/cluster
+	rm -f ${EXTDIR}/rc.d/rc0.d/K15cluster
+	rm -f ${EXTDIR}/rc.d/rc1.d/K15cluster
+	rm -f ${EXTDIR}/rc.d/rc2.d/K15cluster
+	rm -f ${EXTDIR}/rc.d/rc3.d/S99cluster
+	rm -f ${EXTDIR}/rc.d/rc4.d/S99cluster
+	rm -f ${EXTDIR}/rc.d/rc5.d/S99cluster
+	rm -f ${EXTDIR}/rc.d/rc6.d/K15cluster
+
 uninstall-cups:
 	rm -f ${EXTDIR}/rc.d/init.d/cups
 	rm -f ${EXTDIR}/rc.d/rc0.d/K00cups
@@ -798,6 +808,26 @@ uninstall-gdm:
 	rm -f ${EXTDIR}/rc.d/rc5.d/S95gdm
 	rm -f ${EXTDIR}/rc.d/rc6.d/K05gdm
 
+uninstall-gmetad:
+	rm -f ${EXTDIR}/rc.d/init.d/gmetad
+	rm -f ${EXTDIR}/rc.d/rc0.d/K15gmetad
+	rm -f ${EXTDIR}/rc.d/rc1.d/K15gmetad
+	rm -f ${EXTDIR}/rc.d/rc2.d/K15gmetad
+	rm -f ${EXTDIR}/rc.d/rc3.d/S99gmetad
+	rm -f ${EXTDIR}/rc.d/rc4.d/S99gmetad
+	rm -f ${EXTDIR}/rc.d/rc5.d/S99gmetad
+	rm -f ${EXTDIR}/rc.d/rc6.d/K15gmetad
+
+uninstall-gmond:
+	rm -f ${EXTDIR}/rc.d/init.d/gmond
+	rm -f ${EXTDIR}/rc.d/rc0.d/K15gmond
+	rm -f ${EXTDIR}/rc.d/rc1.d/K15gmond
+	rm -f ${EXTDIR}/rc.d/rc2.d/K15gmond
+	rm -f ${EXTDIR}/rc.d/rc3.d/S99gmond
+	rm -f ${EXTDIR}/rc.d/rc4.d/S99gmond
+	rm -f ${EXTDIR}/rc.d/rc5.d/S99gmond
+	rm -f ${EXTDIR}/rc.d/rc6.d/K15gmond
+
 uninstall-gpm:
 	rm -f ${EXTDIR}/rc.d/init.d/gpm
 	rm -f ${EXTDIR}/rc.d/rc0.d/K10gpm
@@ -853,6 +883,36 @@ uninstall-lprng:
 	rm -f ${EXTDIR}/rc.d/rc4.d/S99lprng
 	rm -f ${EXTDIR}/rc.d/rc5.d/S99lprng
 	rm -f ${EXTDIR}/rc.d/rc6.d/K00lprng
+
+uninstall-maui:
+	rm -f ${EXTDIR}/rc.d/init.d/maui
+	rm -f ${EXTDIR}/rc.d/rc0.d/K15maui
+	rm -f ${EXTDIR}/rc.d/rc1.d/K15maui
+	rm -f ${EXTDIR}/rc.d/rc2.d/K15maui
+	rm -f ${EXTDIR}/rc.d/rc3.d/S50maui
+	rm -f ${EXTDIR}/rc.d/rc4.d/S50maui
+	rm -f ${EXTDIR}/rc.d/rc5.d/S50maui
+	rm -f ${EXTDIR}/rc.d/rc6.d/K15maui
+
+uninstall-momclient:
+	rm -f ${EXTDIR}/rc.d/init.d/momclient
+	rm -f ${EXTDIR}/rc.d/rc0.d/K15momclient
+	rm -f ${EXTDIR}/rc.d/rc1.d/K15momclient
+	rm -f ${EXTDIR}/rc.d/rc2.d/K15momclient
+	rm -f ${EXTDIR}/rc.d/rc3.d/S35momclient
+	rm -f ${EXTDIR}/rc.d/rc4.d/S35momclient
+	rm -f ${EXTDIR}/rc.d/rc5.d/S35momclient
+	rm -f ${EXTDIR}/rc.d/rc6.d/K15momclient
+
+uninstall-mpich2:
+	rm -f ${EXTDIR}/rc.d/init.d/mpd
+	rm -f ${EXTDIR}/rc.d/rc0.d/K15mpd
+	rm -f ${EXTDIR}/rc.d/rc1.d/K15mpd
+	rm -f ${EXTDIR}/rc.d/rc2.d/K15mpd
+	rm -f ${EXTDIR}/rc.d/rc3.d/S99mpd
+	rm -f ${EXTDIR}/rc.d/rc4.d/S99mpd
+	rm -f ${EXTDIR}/rc.d/rc5.d/S99mpd
+	rm -f ${EXTDIR}/rc.d/rc6.d/K15mpd
 
 uninstall-mysql:
 	rm -f ${EXTDIR}/rc.d/init.d/mysql
@@ -933,6 +993,16 @@ uninstall-openldap2:
 	rm -f ${EXTDIR}/rc.d/rc4.d/S25openldap
 	rm -f ${EXTDIR}/rc.d/rc5.d/S25openldap
 	rm -f ${EXTDIR}/rc.d/rc6.d/K46openldap
+
+uninstall-pbsserver:
+	rm -f ${EXTDIR}/rc.d/init.d/pbsserver
+	rm -f ${EXTDIR}/rc.d/rc0.d/K15pbsserver
+	rm -f ${EXTDIR}/rc.d/rc1.d/K15pbsserver
+	rm -f ${EXTDIR}/rc.d/rc2.d/K15pbsserver
+	rm -f ${EXTDIR}/rc.d/rc3.d/S25pbsserver
+	rm -f ${EXTDIR}/rc.d/rc4.d/S25pbsserver
+	rm -f ${EXTDIR}/rc.d/rc5.d/S25pbsserver
+	rm -f ${EXTDIR}/rc.d/rc6.d/K15pbsserver
 
 uninstall-portmap:
 	rm -f ${EXTDIR}/rc.d/init.d/portmap
