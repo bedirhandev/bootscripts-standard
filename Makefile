@@ -157,7 +157,7 @@ install-minimal: create-dirs create-service-dir udev_device_dirs udev_device_lin
 	if [ ! -f ${EXTDIR}/sysconfig/createfiles ]; then install -m ${CONFMODE} clfs/sysconfig/createfiles ${EXTDIR}/sysconfig/; fi
 	@$(MAKE) mknod_devices
 
-install-raq2: 
+install-raq2: create-dirs
 	install -m ${MODE} clfs/init.d/paneld        ${EXTDIR}/rc.d/init.d/
 	ln -sf ../init.d/paneld      ${EXTDIR}/rc.d/rc0.d/K01paneld
 	ln -sf ../init.d/paneld      ${EXTDIR}/rc.d/rc1.d/S99paneld
@@ -168,7 +168,7 @@ install-raq2:
 	ln -sf ../init.d/paneld      ${EXTDIR}/rc.d/rc6.d/K01paneld
 	if [ ! -f ${EXTDIR}/sysconfig/lcd          ]; then install -m ${CONFMODE} clfs/sysconfig/lcd-raq2   ${EXTDIR}/sysconfig/lcd; fi
 
-install-raq3: 
+install-raq3: create-dirs
 	install -m ${MODE} clfs/init.d/setlcd        ${EXTDIR}/rc.d/init.d/
 	ln -sf ../init.d/setlcd      ${EXTDIR}/rc.d/rc0.d/K01setlcd
 	ln -sf ../init.d/setlcd      ${EXTDIR}/rc.d/rc1.d/S99setlcd
@@ -179,7 +179,7 @@ install-raq3:
 	ln -sf ../init.d/setlcd      ${EXTDIR}/rc.d/rc6.d/K01setlcd
 	if [ ! -f ${EXTDIR}/sysconfig/lcd          ]; then install -m ${CONFMODE} clfs/sysconfig/lcd-raq3   ${EXTDIR}/sysconfig/lcd; fi
 
-install-lcd: 
+install-lcd: create-dirs
 	if [ ! -f ${EXTDIR}/sysconfig/lcd          ]; then install -m ${CONFMODE} clfs/sysconfig/lcd        ${EXTDIR}/sysconfig/lcd; fi
 
 install-service-dhclient: create-service-dir
@@ -194,7 +194,7 @@ install-service-ipx: create-service-dir
 install-service-pppoe: create-service-dir
 	install -m ${MODE} cblfs/sysconfig/network-devices/services/pppoe    ${EXTDIR}/sysconfig/network-devices/services
 
-install-netboot:
+install-netboot: create-dirs
 	install -d -m ${DIRMODE} ${EXTDIR}/rc.d
 	install -m ${MODE} netboot/rc.0         ${EXTDIR}/rc.d/
 	install -m ${MODE} netboot/rc.1         ${EXTDIR}/rc.d/
@@ -237,7 +237,7 @@ install-bind: create-dirs
 	ln -sf  ../init.d/bind ${EXTDIR}/rc.d/rc5.d/S22bind
 	ln -sf  ../init.d/bind ${EXTDIR}/rc.d/rc6.d/K49bind
 
-install-cluster-all:
+install-cluster-all: create-dirs
 	install -m ${MODE} cblfs/init.d/cluster	${EXTDIR}/rc.d/init.d/
 	ln -sf  ../init.d/cluster ${EXTDIR}/rc.d/rc0.d/K15cluster
 	ln -sf  ../init.d/cluster ${EXTDIR}/rc.d/rc1.d/K15cluster
@@ -420,7 +420,7 @@ install-lprng: create-dirs
 	ln -sf  ../init.d/lprng ${EXTDIR}/rc.d/rc5.d/S99lprng
 	ln -sf  ../init.d/lprng ${EXTDIR}/rc.d/rc6.d/K00lprng
 
-install-maui: 
+install-maui: create-dirs
 	install -m ${MODE} cblfs/init.d/maui        ${EXTDIR}/rc.d/init.d/
 	ln -sf ../init.d/maui      ${EXTDIR}/rc.d/rc0.d/K15maui
 	ln -sf ../init.d/maui      ${EXTDIR}/rc.d/rc1.d/K15maui
@@ -430,7 +430,7 @@ install-maui:
 	ln -sf ../init.d/maui      ${EXTDIR}/rc.d/rc5.d/S50maui
 	ln -sf ../init.d/maui      ${EXTDIR}/rc.d/rc6.d/K15maui
 
-install-momclient:
+install-momclient: create-dirs
 	install -m ${MODE} cblfs/init.d/momclient        ${EXTDIR}/rc.d/init.d/
 	ln -sf ../init.d/momclient      ${EXTDIR}/rc.d/rc0.d/K15momclient
 	ln -sf ../init.d/momclient      ${EXTDIR}/rc.d/rc1.d/K15momclient
@@ -440,7 +440,7 @@ install-momclient:
 	ln -sf ../init.d/momclient      ${EXTDIR}/rc.d/rc5.d/S35momclient
 	ln -sf ../init.d/momclient      ${EXTDIR}/rc.d/rc6.d/K15momclient
 
-install-mpich2:
+install-mpich2: create-dirs
 	install -m ${MODE} cblfs/init.d/mpd     ${EXTDIR}/rc.d/init.d/
 	ln -sf  ../init.d/mpd ${EXTDIR}/rc.d/rc0.d/K10mpd
 	ln -sf  ../init.d/mpd ${EXTDIR}/rc.d/rc1.d/K10mpd
@@ -530,7 +530,7 @@ install-openldap2: create-dirs
 	ln -sf  ../init.d/openldap ${EXTDIR}/rc.d/rc5.d/S25openldap
 	ln -sf  ../init.d/openldap ${EXTDIR}/rc.d/rc6.d/K46openldap
 
-install-pbsserver:
+install-pbsserver: create-dirs
 	install -m ${MODE} cblfs/init.d/pbsserver        ${EXTDIR}/rc.d/init.d/
 	ln -sf ../init.d/pbsserver      ${EXTDIR}/rc.d/rc0.d/K15pbsserver
 	ln -sf ../init.d/pbsserver      ${EXTDIR}/rc.d/rc1.d/K15pbsserver
