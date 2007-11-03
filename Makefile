@@ -237,6 +237,16 @@ install-bind: create-dirs
 	ln -sf  ../init.d/bind ${EXTDIR}/rc.d/rc5.d/S22bind
 	ln -sf  ../init.d/bind ${EXTDIR}/rc.d/rc6.d/K49bind
 
+install-cluster-all:
+	install -m ${MODE} cblfs/init.d/cluster	${EXTDIR}/rc.d/init.d/
+	ln -sf  ../init.d/cluster ${EXTDIR}/rc.d/rc0.d/K15cluster
+	ln -sf  ../init.d/cluster ${EXTDIR}/rc.d/rc1.d/K15cluster
+	ln -sf  ../init.d/cluster ${EXTDIR}/rc.d/rc2.d/K15cluster
+	ln -sf  ../init.d/cluster ${EXTDIR}/rc.d/rc3.d/S99cluster
+	ln -sf  ../init.d/cluster ${EXTDIR}/rc.d/rc4.d/S99cluster
+	ln -sf  ../init.d/cluster ${EXTDIR}/rc.d/rc5.d/S99cluster
+	ln -sf  ../init.d/cluster ${EXTDIR}/rc.d/rc6.d/K15cluster
+
 install-cups: create-dirs
 	install -m ${MODE} cblfs/init.d/cups       ${EXTDIR}/rc.d/init.d/
 	rm -f ${EXTDIR}/rc.d/rc0.d/K36cups
@@ -324,6 +334,26 @@ install-gdm: create-dirs
 	ln -sf  ../init.d/gdm ${EXTDIR}/rc.d/rc5.d/S95gdm
 	ln -sf  ../init.d/gdm ${EXTDIR}/rc.d/rc6.d/K05gdm
 
+install-gmetad:
+	install -m ${MODE} cblfs/init.d/gmetad	${EXTDIR}/rc.d/init.d
+	ln -sf  ../init.d/gmetad ${EXTDIR}/rc.d/rc0.d/K15gmetad
+	ln -sf  ../init.d/gmetad ${EXTDIR}/rc.d/rc1.d/K15gmetad
+	ln -sf  ../init.d/gmetad ${EXTDIR}/rc.d/rc2.d/K15gmetad
+	ln -sf  ../init.d/gmetad ${EXTDIR}/rc.d/rc3.d/S99gmetad
+	ln -sf  ../init.d/gmetad ${EXTDIR}/rc.d/rc4.d/S99gmetad
+	ln -sf  ../init.d/gmetad ${EXTDIR}/rc.d/rc5.d/S99gmetad
+	ln -sf  ../init.d/gmetad ${EXTDIR}/rc.d/rc6.d/K15gmetad
+
+install-gmond:
+	install -m ${MODE} cblfs/init.d/gmond       ${EXTDIR}/rc.d/init.d/
+	ln -sf  ../init.d/gmond ${EXTDIR}/rc.d/rc0.d/K15gmond
+	ln -sf  ../init.d/gmond ${EXTDIR}/rc.d/rc1.d/K15gmond
+	ln -sf  ../init.d/gmond ${EXTDIR}/rc.d/rc2.d/K15gmond
+	ln -sf  ../init.d/gmond ${EXTDIR}/rc.d/rc3.d/S99gmond
+	ln -sf  ../init.d/gmond ${EXTDIR}/rc.d/rc4.d/S99gmond
+	ln -sf  ../init.d/gmond ${EXTDIR}/rc.d/rc5.d/S99gmond
+	ln -sf  ../init.d/gmond ${EXTDIR}/rc.d/rc6.d/K15gmond
+
 install-gpm: create-dirs
 	install -m ${MODE} cblfs/init.d/gpm        ${EXTDIR}/rc.d/init.d/
 	ln -sf  ../init.d/gpm ${EXTDIR}/rc.d/rc0.d/K10gpm
@@ -389,6 +419,36 @@ install-lprng: create-dirs
 	ln -sf  ../init.d/lprng ${EXTDIR}/rc.d/rc4.d/S99lprng
 	ln -sf  ../init.d/lprng ${EXTDIR}/rc.d/rc5.d/S99lprng
 	ln -sf  ../init.d/lprng ${EXTDIR}/rc.d/rc6.d/K00lprng
+
+install-maui: 
+	install -m ${MODE} cblfs/init.d/maui        ${EXTDIR}/rc.d/init.d/
+	ln -sf ../init.d/maui      ${EXTDIR}/rc.d/rc0.d/K15maui
+	ln -sf ../init.d/maui      ${EXTDIR}/rc.d/rc1.d/K15maui
+	ln -sf ../init.d/maui      ${EXTDIR}/rc.d/rc2.d/K15maui
+	ln -sf ../init.d/maui      ${EXTDIR}/rc.d/rc3.d/S50maui
+	ln -sf ../init.d/maui      ${EXTDIR}/rc.d/rc4.d/S50maui
+	ln -sf ../init.d/maui      ${EXTDIR}/rc.d/rc5.d/S50maui
+	ln -sf ../init.d/maui      ${EXTDIR}/rc.d/rc6.d/K15maui
+
+install-momclient:
+	install -m ${MODE} cblfs/init.d/momclient        ${EXTDIR}/rc.d/init.d/
+	ln -sf ../init.d/momclient      ${EXTDIR}/rc.d/rc0.d/K15momclient
+	ln -sf ../init.d/momclient      ${EXTDIR}/rc.d/rc1.d/K15momclient
+	ln -sf ../init.d/momclient      ${EXTDIR}/rc.d/rc2.d/K15momclient
+	ln -sf ../init.d/momclient      ${EXTDIR}/rc.d/rc3.d/S35momclient
+	ln -sf ../init.d/momclient      ${EXTDIR}/rc.d/rc4.d/S35momclient
+	ln -sf ../init.d/momclient      ${EXTDIR}/rc.d/rc5.d/S35momclient
+	ln -sf ../init.d/momclient      ${EXTDIR}/rc.d/rc6.d/K15momclient
+
+install-mpich2:
+	install -m ${MODE} cblfs/init.d/mpd     ${EXTDIR}/rc.d/init.d/
+	ln -sf  ../init.d/mpd ${EXTDIR}/rc.d/rc0.d/K10mpd
+	ln -sf  ../init.d/mpd ${EXTDIR}/rc.d/rc1.d/K10mpd
+	ln -sf  ../init.d/mpd ${EXTDIR}/rc.d/rc2.d/K10mpd
+	ln -sf  ../init.d/mpd ${EXTDIR}/rc.d/rc3.d/S99mpd
+	ln -sf  ../init.d/mpd ${EXTDIR}/rc.d/rc4.d/S99mpd
+	ln -sf  ../init.d/mpd ${EXTDIR}/rc.d/rc5.d/S99mpd
+	ln -sf  ../init.d/mpd ${EXTDIR}/rc.d/rc6.d/K10mpd
 
 install-mysql: create-dirs
 	install -m ${MODE} cblfs/init.d/mysql      ${EXTDIR}/rc.d/init.d/
@@ -469,6 +529,16 @@ install-openldap2: create-dirs
 	ln -sf  ../init.d/openldap ${EXTDIR}/rc.d/rc4.d/S25openldap
 	ln -sf  ../init.d/openldap ${EXTDIR}/rc.d/rc5.d/S25openldap
 	ln -sf  ../init.d/openldap ${EXTDIR}/rc.d/rc6.d/K46openldap
+
+install-pbsserver:
+	install -m ${MODE} cblfs/init.d/pbsserver        ${EXTDIR}/rc.d/init.d/
+	ln -sf ../init.d/pbsserver      ${EXTDIR}/rc.d/rc0.d/K15pbsserver
+	ln -sf ../init.d/pbsserver      ${EXTDIR}/rc.d/rc1.d/K15pbsserver
+	ln -sf ../init.d/pbsserver      ${EXTDIR}/rc.d/rc2.d/K15pbsserver
+	ln -sf ../init.d/pbsserver      ${EXTDIR}/rc.d/rc3.d/S25pbsserver
+	ln -sf ../init.d/pbsserver      ${EXTDIR}/rc.d/rc4.d/S25pbsserver
+	ln -sf ../init.d/pbsserver      ${EXTDIR}/rc.d/rc5.d/S25pbsserver
+	ln -sf ../init.d/pbsserver      ${EXTDIR}/rc.d/rc6.d/K15pbsserver
 
 install-portmap: create-dirs
 	install -m ${MODE} cblfs/init.d/portmap    ${EXTDIR}/rc.d/init.d/
