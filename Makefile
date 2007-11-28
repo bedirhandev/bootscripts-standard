@@ -284,6 +284,10 @@ install-dbus: create-dirs
 	ln -sf  ../init.d/dbus ${EXTDIR}/rc.d/rc5.d/S20dbus
 	ln -sf  ../init.d/dbus ${EXTDIR}/rc.d/rc6.d/K30dbus
 
+install-devmapper: create-dirs
+	install -m ${MODE} cblfs/init.d/devmapper  ${EXTDIR}/rc.d/init.d/
+	ln -sf  ../init.d/devmapper ${EXTDIR}/rc.d/rcsysinit.d/S15devmapper
+
 install-dhcp: create-dirs
 	install -m ${MODE} cblfs/init.d/dhcp       ${EXTDIR}/rc.d/init.d/
 	ln -sf  ../init.d/dhcp ${EXTDIR}/rc.d/rc0.d/K30dhcp
@@ -758,6 +762,10 @@ uninstall-cyrus-sasl:
 	rm -f ${EXTDIR}/rc.d/rc5.d/S24cyrus-sasl
 	rm -f ${EXTDIR}/rc.d/rc6.d/K49cyrus-sasl
 
+uninstall-devmapper:
+	rm -f ${EXTDIR}/etc/rc.d/init.d/devmapper
+	rm -f ${EXTDIR}/etc/rc.d/rcsysinit.d/S15devmapper
+
 uninstall-dhcp:
 	rm -f ${EXTDIR}/rc.d/init.d/dhcp
 	rm -f ${EXTDIR}/rc.d/rc0.d/K30dhcp
@@ -1168,6 +1176,7 @@ uninstall-xinetd:
 	install-bind \
 	install-cups \
 	install-cyrus-sasl \
+	install-devmapper \
 	install-dhcp \
 	install-exim \
 	install-fcron \
@@ -1207,6 +1216,7 @@ uninstall-xinetd:
 	uninstall-bind \
 	uninstall-cups \
 	uninstall-cyrus-sasl \
+	uninstall-devmapper \
 	uninstall-dhcp \
 	uninstall-exim \
 	uninstall-fcron \
