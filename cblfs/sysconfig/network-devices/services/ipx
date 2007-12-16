@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Begin $network-devices/services/ipx
 
 # Based upon lfs-bootscripts-1.12 $network_devices/if{down,up}

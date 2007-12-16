@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Begin $rc_base/init.d/gmond
 #
 # Based on sysklogd script from LFS-3.1 and earlier.

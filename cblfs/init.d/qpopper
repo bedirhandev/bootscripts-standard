@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Description: The qpopper program provides Post Office Protocol services
 #              to users.
 #
