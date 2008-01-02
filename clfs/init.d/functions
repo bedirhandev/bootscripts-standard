@@ -647,7 +647,7 @@ loadproc()
 #                     warning in stdout
 #          return 4 - Unknown Status
 #
-# Dependencies: kill
+# Dependencies: kill, sleep
 #
 # Todo: LSB does not say that it should call evaluate_retval
 #       It checks for PIDFILE, which is deprecated.
