@@ -33,7 +33,7 @@ fi
 boot_mesg "Bringing up the ${1} interface..."
 boot_mesg_flush
 
-# Process each configruation file
+# Process each configuration file
 for file in ${FILES}; do
 	# skip backup files
 	if [ "${file}" != "${file%""~""}" ]; then

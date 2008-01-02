@@ -8,7 +8,7 @@ Network Configuration:
 	Configuration Files:
 		sysconfig/network-devices/ifconfig.*/*
 		Note: ifconfig.* could be either a file or directory,
-		      but the filename extention must be the same name
+		      but the filename extension must be the same name
 					as the network interface you wish it to belong to.
 					The files within the directory will be processed
 					in alphanumerical order on boot, and reversed on
