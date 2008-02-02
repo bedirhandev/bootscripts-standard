@@ -73,14 +73,14 @@ case "$1" in
 
     reload)
 	boot_mesg "Reloading udev rules..."
-	udevcontrol reload_rules
+	udevadm control reload_rules
 	cp --preserve=all --recursive --update @LIBDIR@/udev/devices/* /dev
 	evaluate_retval
 	;;
 
     force-reload)
 	boot_mesg "Updating all available device nodes in /dev..."
-	udevcontrol reload_rules
+	udevadm control reload_rules
 	rm -rf /dev/.udev /dev/disk
 	cp --preserve=all --recursive --update @LIBDIR@/udev/devices/* /dev
 	/sbin/udevadm trigger
