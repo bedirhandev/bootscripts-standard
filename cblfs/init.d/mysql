@@ -38,7 +38,7 @@ case "$1" in
 			echo_failure
 		else
 			echo ""
-			/usr/bin/mysqld_safe --user=mysql 2>&1 >/dev/null &
+			/usr/bin/mysqld_safe --user=mysql >/dev/null 2>&1 &
 			evaluate_retval
 		fi
 		;;
