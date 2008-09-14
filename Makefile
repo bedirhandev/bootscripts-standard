@@ -667,6 +667,16 @@ install-svn: create-dirs
 	ln -sf ../init.d/svn ${EXTDIR}/rc.d/rc5.d/S33svn
 	ln -sf ../init.d/svn ${EXTDIR}/rc.d/rc6.d/K27svn
 
+install-syslog-ng: create-dirs
+	install -m ${MODE} cblfs/init.d/syslog-ng	${EXTDIR}/rc.d/init.d/
+	ln -sf ../init.d/syslog-ng ${EXTDIR}/rc.d/rc0.d/K90syslog-ng
+	ln -sf ../init.d/syslog-ng ${EXTDIR}/rc.d/rc1.d/S10syslog-ng
+	ln -sf ../init.d/syslog-ng ${EXTDIR}/rc.d/rc2.d/S10syslog-ng
+	ln -sf ../init.d/syslog-ng ${EXTDIR}/rc.d/rc3.d/S10syslog-ng
+	ln -sf ../init.d/syslog-ng ${EXTDIR}/rc.d/rc4.d/S10syslog-ng
+	ln -sf ../init.d/syslog-ng ${EXTDIR}/rc.d/rc5.d/S10syslog-ng
+	ln -sf ../init.d/syslog-ng ${EXTDIR}/rc.d/rc6.d/K90syslog-ng
+
 install-sysstat: create-dirs
 	install -m ${MODE} cblfs/init.d/sysstat    ${EXTDIR}/rc.d/init.d/
 	ln -sf ../init.d/sysstat ${EXTDIR}/rc.d/rcsysinit.d/S85sysstat
@@ -1125,6 +1135,16 @@ uninstall-svn:
 	rm -f ${EXTDIR}/rc.d/rc5.d/S33svn
 	rm -f ${EXTDIR}/rc.d/rc6.d/K27svn
 
+uninstall-syslog-ng:
+	rm -f ${EXTDIR}/rc.d/init.d/syslog-ng
+	rm -f ${EXTDIR}/rc.d/rc0.d/K90syslog-ng
+	rm -f ${EXTDIR}/rc.d/rc1.d/S10syslog-ng
+	rm -f ${EXTDIR}/rc.d/rc2.d/S10syslog-ng
+	rm -f ${EXTDIR}/rc.d/rc3.d/S10syslog-ng
+	rm -f ${EXTDIR}/rc.d/rc4.d/S10syslog-ng
+	rm -f ${EXTDIR}/rc.d/rc5.d/S10syslog-ng
+	rm -f ${EXTDIR}/rc.d/rc6.d/K90syslog-ng
+
 uninstall-sysstat:
 	rm -f ${EXTDIR}/rc.d/init.d/sysstat
 	rm -f ${EXTDIR}/rc.d/rcsysinit.d/S85sysstat
@@ -1209,6 +1229,7 @@ uninstall-xinetd:
 	install-sshd \
 	install-stunnel \
 	install-svn \
+	install-syslog-ng \
 	install-sysstat \
 	install-vsftpd \
 	install-usb \
@@ -1249,6 +1270,7 @@ uninstall-xinetd:
 	uninstall-sshd \
 	uninstall-stunnel \
 	uninstall-svn \
+	uninstall-syslog-ng \
 	uninstall-sysstat \
 	uninstall-vsftpd \
 	uninstall-usb \
