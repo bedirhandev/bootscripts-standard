@@ -26,7 +26,7 @@ case "$1" in
 	evaluate_retval
 
 	boot_mesg "Copying static entries..."
-	cp --preserve=all --recursive --remove-destination @LIBDIR@/udev/devices/* /dev
+	cp --preserve=all --recursive --remove-destination /lib/udev/devices/* /dev
 	evaluate_retval
 	
 	boot_mesg "Setting Permissons on /dev/shm..."
@@ -74,7 +74,7 @@ case "$1" in
     reload)
 	boot_mesg "Reloading udev rules..."
 	udevadm control reload_rules
-	cp --preserve=all --recursive --update @LIBDIR@/udev/devices/* /dev
+	cp --preserve=all --recursive --update /lib/udev/devices/* /dev
 	evaluate_retval
 	;;
 
@@ -82,7 +82,7 @@ case "$1" in
 	boot_mesg "Updating all available device nodes in /dev..."
 	udevadm control reload_rules
 	rm -rf /dev/.udev /dev/disk
-	cp --preserve=all --recursive --update @LIBDIR@/udev/devices/* /dev
+	cp --preserve=all --recursive --update /lib/udev/devices/* /dev
 	/sbin/udevadm trigger
 	/sbin/udevadm settle
 	evaluate_retval
