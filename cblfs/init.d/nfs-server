@@ -17,6 +17,10 @@ case "$1" in
 		loadproc /usr/sbin/rpc.mountd
 
 		if [ "$NFS4" = "yes" ]; then
+			boot_mesg "Mounting rpc_pipefs virtual filesystem..."
+			/bin/mount -t rpc_pipefs rpc_pipefs /var/lib/nfs/rpc_pipefs 2>&1 > /dev/null
+			evaluate_retval
+
 			boot_mesg "Starting NFS4 idmapd..."
 			loadproc /usr/sbin/rpc.idmapd
 
@@ -64,6 +68,10 @@ case "$1" in
 
 			boot_mesg "Stopping NFS idmapd..."
 			killproc /usr/sbin/rpc.idmapd
+
+			boot_mesg "Unmounting rpc_pipefs virtual filesystem..."
+			/bin/umount /var/lib/nfs/rpc_pipefs 2>&1 > /dev/null
+			evaluate_retval
 		fi
 
 		boot_mesg "Stopping NFS mountd..."
