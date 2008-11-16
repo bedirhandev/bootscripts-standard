@@ -17,16 +17,22 @@ case "$1" in
 		loadproc /usr/sbin/rpc.statd
 
 		if [ "$NFS4" = "yes" ]; then
-			bootmesg "Starting NFS gssd"
+			boot_mesg "Starting NFS gssd..."
 			loadproc /usr/sbin/rpc.gssd -k ${NFS4KEYTAB:-/etc/nfs4.keytab}
 
-			bootmesg "Starting NFS idmapd"
+			boot_mesg "Starting NFS idmapd..."
 			loadproc /usr/sbin/rpc.idmapd
 		fi
 
 		;;
 
 	stop)
+		boot_mesg "Stopping NFS idmapd..."
+		killproc /usr/sbin/rpc.idmapd
+
+		boot_mesg "Stopping NFS gssd..."
+		killproc /usr/sbin/rpc.gssd
+
 		boot_mesg "Stopping NFS statd..."
 		killproc /usr/sbin/rpc.statd
 		;;
@@ -39,6 +45,8 @@ case "$1" in
 
 	status)
 		statusproc /usr/sbin/rpc.statd
+		statusproc /usr/sbin/rpc.gssd
+		statusproc /usr/sbin/rpc.idmapd
 		;;
 
 	*)
