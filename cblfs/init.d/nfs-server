@@ -118,7 +118,7 @@ case "$1" in
 		## Special case for nfsd with no full path
 		if [ "$NFS4" = "yes" ]; then
 			statusproc /usr/sbin/rpc.idmapd
-			statusproc /usr/sbin/rps.svcgssd
+			statusproc /usr/sbin/rpc.svcgssd
 		fi
 		statusproc nfsd
 		statusproc /usr/sbin/rpc.statd
