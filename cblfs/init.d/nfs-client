@@ -9,11 +9,21 @@
 
 . /etc/sysconfig/rc
 . $rc_functions
+. /etc/sysconfig/nfs-client
 
 case "$1" in
 	start)
 		boot_mesg "Starting NFS statd..."
 		loadproc /usr/sbin/rpc.statd
+
+		if [ "$NFS4" = "yes" ]; then
+			bootmesg "Starting NFS gssd"
+			loadproc /usr/sbin/rpc.gssd -k ${NFS4KEYTAB:-/etc/nfs4.keytab}
+
+			bootmesg "Starting NFS idmapd"
+			loadproc /usr/sbin/rpc.idmapd
+		fi
+
 		;;
 
 	stop)

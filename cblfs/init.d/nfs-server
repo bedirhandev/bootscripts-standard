@@ -16,6 +16,14 @@ case "$1" in
 		boot_mesg "Starting NFS mountd..."
 		loadproc /usr/sbin/rpc.mountd
 
+		if [ "$NFS4" = "yes" ]; then
+			boot_mesg "Starting NFS4 idmapd..."
+			loadproc /usr/sbin/rpc.idmapd
+
+			boot_mesg "Starting NFS4 svcgssd..."
+			loadproc /usr/sbin/rpc.svcgssd
+		fi
+
 		boot_mesg "Starting NFS nfsd..."
 		loadproc /usr/sbin/rpc.nfsd -p $PORT $PROCESSES
 
@@ -49,6 +57,14 @@ case "$1" in
 		boot_mesg "Stopping NFS nfsd..."
 		# nfsd needs HUP....
 		killproc nfsd HUP
+
+		if [ "$NFS4" = "yes" ]; then
+			boot_mesg "Stopping NFS svcgssd..."
+			killproc /usr/sbin/rpc.svcgssd
+
+			boot_mesg "Stopping NFS idmapd..."
+			killproc /usr/sbin/rpc.idmapd
+		fi
 
 		boot_mesg "Stopping NFS mountd..."
 		killproc /usr/sbin/rpc.mountd
@@ -92,6 +108,10 @@ case "$1" in
 	status)
 		statusproc /usr/sbin/rpc.mountd
 		## Special case for nfsd with no full path
+		if [ "$NFS4" = "yes" ]; then
+			statusproc /usr/sbin/rpc.idmapd
+			statusproc /usr/sbin/rps.svcgssd
+		fi
 		statusproc nfsd
 		statusproc /usr/sbin/rpc.statd
 		if [ "$QUOTA" = "yes" ]; then
