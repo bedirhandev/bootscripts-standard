@@ -13,6 +13,14 @@
 
 case "$1" in
 	start)
+		# NFSD support only in 2.6 kernel
+		/bin/uname -r | /bin/grep "^2.6" 2>&1 > /dev/null
+		if [ $? = 0 ]; then
+			boot_mesg "Mounting nfsd virtual filesystem..."
+			/bin/mount -t nfsd none /proc/fs/nfsd 2>&1 > /dev/null
+			evaluate_retval
+		fi
+
 		boot_mesg "Starting NFS mountd..."
 		loadproc /usr/sbin/rpc.mountd
 
@@ -37,14 +45,6 @@ case "$1" in
 		if [ "$QUOTAS" = "yes" ]; then
 			boot_mesg "Starting NFS rquotad..."
 			loadproc /usr/sbin/rpc.rquotad
-		fi
-
-		# NFSD support only in 2.6 kernel
-		/bin/uname -r | /bin/grep "2.6" 2>&1 > /dev/null
-		if [ $? = 0 ]; then
-			boot_mesg "Mounting nfsd virtual filesystem..."
-			/bin/mount -t nfsd none /proc/fs/nfsd 2>&1 > /dev/null
-			evaluate_retval
 		fi
 
 		# Make ceratin that the list is refreshed on
@@ -85,19 +85,20 @@ case "$1" in
 		/usr/sbin/exportfs -au 2>&1 > /dev/null
 		evaluate_retval
 
+		# Remove a pid file that isn't done automatically
+		boot_mesg "Removing the rpc.statd pid file if it exists"
+		if [ -f /var/run/rpc.statd.pid ]; then
+		    rm -f /var/run/rpc.statd.pid
+		fi
+
 		# NFSD support only in 2.6 kernel
-                /bin/uname -r | /bin/grep "2.6" 2>&1 > /dev/null
+                /bin/uname -r | /bin/grep "^2.6" 2>&1 > /dev/null
                 if [ $? = 0 ]; then
 			boot_mesg "Unmounting NFS Virtual Filesystem..."
 			/bin/umount /proc/fs/nfsd 2>&1 > /dev/null
 			evaluate_retval
 		fi
 
-		# Remove a pid file that isn't done automatically
-		boot_mesg "Removing the rpc.statd pid file if it exists"
-		if [ -f /var/run/rpc.statd.pid ]; then
-		    rm -f /var/run/rpc.statd.pid
-		fi
 		;;
 
 	reload)
