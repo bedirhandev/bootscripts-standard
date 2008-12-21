@@ -75,7 +75,6 @@ install-bootscripts: create-dirs create-service-dir udev_device_dirs udev_device
 	install -m ${MODE} clfs/init.d/sysctl        ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/template      ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/udev          ${EXTDIR}/rc.d/init.d/
-	sed -i "s:@LIBDIR@:$(LIBDIR):g" ${EXTDIR}/rc.d/init.d/udev
 	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc0.d/K80network
 	ln -sf ../init.d/sysklogd    ${EXTDIR}/rc.d/rc0.d/K90sysklogd
 	ln -sf ../init.d/sendsignals ${EXTDIR}/rc.d/rc0.d/S60sendsignals
