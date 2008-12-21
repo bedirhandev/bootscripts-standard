@@ -9,11 +9,12 @@
 
 . /etc/sysconfig/rc
 . $rc_functions
+. /etc/sysconfig/dhcp
 
 case "$1" in
 	start)
 		boot_mesg "Starting DHCP Server..."
-		loadproc /usr/sbin/dhcpd -q eth1
+		loadproc /usr/sbin/dhcpd ${DHCP_ARGS--q eth0}
 		;;
 
 	stop)
