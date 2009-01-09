@@ -59,8 +59,8 @@ install-bootscripts: create-dirs create-service-dir udev_device_dirs udev_device
 	install -m ${MODE} clfs/init.d/cleanfs       ${EXTDIR}/rc.d/init.d/
 	install -m ${CONFMODE} clfs/init.d/functions ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/halt          ${EXTDIR}/rc.d/init.d/
-	install -m ${MODE} clfs/init.d/console       ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/consolelog    ${EXTDIR}/rc.d/init.d/
+	install -m ${MODE} clfs/init.d/i18n          ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/localnet      ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/modules       ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/mountfs       ${EXTDIR}/rc.d/init.d/
@@ -108,12 +108,12 @@ install-bootscripts: create-dirs create-service-dir udev_device_dirs udev_device
 	ln -sf ../init.d/mountfs     ${EXTDIR}/rc.d/rcsysinit.d/S30mountfs
 	ln -sf ../init.d/swap        ${EXTDIR}/rc.d/rcsysinit.d/S40swap
 	ln -sf ../init.d/cleanfs     ${EXTDIR}/rc.d/rcsysinit.d/S50cleanfs
-	ln -sf ../init.d/console     ${EXTDIR}/rc.d/rcsysinit.d/S70console
+	ln -sf ../init.d/i18n        ${EXTDIR}/rc.d/rcsysinit.d/S70i18n
 	ln -sf ../init.d/localnet    ${EXTDIR}/rc.d/rcsysinit.d/S80localnet
 	ln -sf ../init.d/sysctl      ${EXTDIR}/rc.d/rcsysinit.d/S90sysctl
 	if [ ! -f ${EXTDIR}/sysconfig/bootscripts ]; then install -m ${CONFMODE} clfs/sysconfig/bootscripts ${EXTDIR}/sysconfig/bootscripts; fi
-	if [ ! -f ${EXTDIR}/sysconfig/console     ]; then install -m ${CONFMODE} clfs/sysconfig/console     ${EXTDIR}/sysconfig/; fi
 	if [ ! -f ${EXTDIR}/sysconfig/createfiles ]; then install -m ${CONFMODE} clfs/sysconfig/createfiles ${EXTDIR}/sysconfig/; fi
+	if [ ! -f ${EXTDIR}/sysconfig/i18n        ]; then install -m ${CONFMODE} clfs/sysconfig/i18n        ${EXTDIR}/sysconfig/; fi
 	if [ ! -f ${EXTDIR}/sysconfig/modules     ]; then install -m ${CONFMODE} clfs/sysconfig/modules     ${EXTDIR}/sysconfig/; fi
 	if [ ! -f ${EXTDIR}/sysconfig/rc          ]; then install -m ${CONFMODE} clfs/sysconfig/rc          ${EXTDIR}/sysconfig/; fi
 	install                   -m ${MODE} clfs/sysconfig/network-devices/ifup   ${EXTDIR}/sysconfig/network-devices/

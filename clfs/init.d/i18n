@@ -1,22 +1,22 @@
 #!/bin/bash
 ########################################################################
-# Begin $rc_base/init.d/unicode
+# Begin $rc_base/init.d/i18n
 #
-# Description : Setup for Unicode Console
+# Description : Setup for i18n
 #
 # Authors     : Jim Gifford
 #
 # Version     : 00.00
 #
-# Notes       : This Script Replaces console script
+# Notes       :
 #
 ########################################################################
 
 . /etc/sysconfig/rc
 . ${rc_functions}
 
-if [ -f /etc/sysconfig/unicode ]; then
-	. /etc/sysconfig/unicode
+if [ -f /etc/sysconfig/i18n ]; then
+	. /etc/sysconfig/i18n
 fi
 
 case "${1}" in
@@ -80,4 +80,4 @@ case "${1}" in
 	;;
 esac
 
-# End $rc_base/init.d/unicode
+# End $rc_base/init.d/i18n

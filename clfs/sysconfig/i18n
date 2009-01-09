@@ -1,7 +1,7 @@
 ########################################################################
-# Begin /etc/sysconfig/unicode
+# Begin /etc/sysconfig/i18n
 #
-# Description : Unicode script config file
+# Description : i18n script config file
 #
 # Authors     : Jim Gifford
 #
