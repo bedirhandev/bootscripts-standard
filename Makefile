@@ -196,7 +196,8 @@ install-service-ipx: create-service-dir
 install-service-pppoe: create-service-dir
 	install -m ${MODE} cblfs/sysconfig/network-devices/services/pppoe    ${EXTDIR}/sysconfig/network-devices/services
 
-install-netboot: create-dirs
+install-netboot: create-dirs create-service-dir udev_device_dirs udev_device_links
+	rm -rf ${EXTDIR}/rc.d
 	install -d -m ${DIRMODE} ${EXTDIR}/rc.d
 	install -m ${MODE} netboot/rc.0         ${EXTDIR}/rc.d/
 	install -m ${MODE} netboot/rc.1         ${EXTDIR}/rc.d/

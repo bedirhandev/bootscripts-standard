@@ -1,3 +1,7 @@
+jim - Janurary 14, 2009
+	* Fixed Netboot Udev Setup
+	* Remove all script directories for netboot
+
 jim - Janurary 8, 2009
 	* Remove Console Script
 	* Added i18n Script
