@@ -1,3 +1,7 @@
+jim - Janurary 31, 2009
+	* Moved syklogd to cblfs
+	* Added rsyslog to clfs
+
 jim - Janurary 14, 2009
 	* Fixed Netboot Udev Setup
 	* Remove all script directories for netboot
