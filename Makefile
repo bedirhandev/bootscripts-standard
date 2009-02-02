@@ -627,7 +627,7 @@ install-sendmail: create-dirs
 	ln -sf  ../init.d/sendmail ${EXTDIR}/rc.d/rc5.d/S35sendmail
 	ln -sf  ../init.d/sendmail ${EXTDIR}/rc.d/rc6.d/K25sendmail
 
-install-sysklogd create-dirs
+install-sysklogd: create-dirs
 	install -m ${MODE} cblfs/init.d/sysklogd   ${EXTDIR}/rc.d/init.d/
 	ln -sf  ../init.d/sysklogd ${EXTDIR}/rc.d/rc0.d/K90sysklogd
 	ln -sf  ../init.d/sysklogd ${EXTDIR}/rc.d/rc1.d/S10sysklogd
