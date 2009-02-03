@@ -1,12 +1,16 @@
-jim - Janurary 31, 2009
+jim - February 2, 2009
+	* Fixed Makefile
+	* Moved Network to install-network
+
+jim - January 31, 2009
 	* Moved syklogd to cblfs
 	* Added rsyslog to clfs
 
-jim - Janurary 14, 2009
+jim - January 14, 2009
 	* Fixed Netboot Udev Setup
 	* Remove all script directories for netboot
 
-jim - Janurary 8, 2009
+jim - January 8, 2009
 	* Remove Console Script
 	* Added i18n Script
 

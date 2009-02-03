@@ -1,5 +1,4 @@
 ETCDIR=/etc
-LIBDIR=/lib
 SHELL=/bin/bash
 EXTDIR=${DESTDIR}${ETCDIR}
 MODE=754
@@ -19,36 +18,36 @@ create-service-dir:
 	install -d -m ${DIRMODE} ${EXTDIR}/sysconfig/network-devices/services
 
 udev_device_dirs:
-	install -d -m ${DIRMODE} ${DESTDIR}${LIBDIR}/udev/devices/{pts,shm,net}
+	install -d -m ${DIRMODE} ${DESTDIR}/lib/udev/devices/{pts,shm,net}
 
 udev_device_links: udev_device_dirs
-	ln -snf /proc/self/fd ${DESTDIR}${LIBDIR}/udev/devices/fd
-	ln -snf /proc/self/fd/0 ${DESTDIR}${LIBDIR}/udev/devices/stdin
-	ln -snf /proc/self/fd/1 ${DESTDIR}${LIBDIR}/udev/devices/stdout
-	ln -snf /proc/self/fd/2 ${DESTDIR}${LIBDIR}/udev/devices/stderr
-	ln -snf /proc/kcore ${DESTDIR}${LIBDIR}/udev/devices/core
+	ln -snf /proc/self/fd ${DESTDIR}/lib/udev/devices/fd
+	ln -snf /proc/self/fd/0 ${DESTDIR}/lib/udev/devices/stdin
+	ln -snf /proc/self/fd/1 ${DESTDIR}/lib/udev/devices/stdout
+	ln -snf /proc/self/fd/2 ${DESTDIR}/lib/udev/devices/stderr
+	ln -snf /proc/kcore ${DESTDIR}/lib/udev/devices/core
 
 mknod_devices: udev_device_dirs
 	@if [ "$$UID" = "0" ]; then \
-		if ! [ -e ${DESTDIR}${LIBDIR}/udev/devices/null ]; then \
-			mknod -m 0666 ${DESTDIR}${LIBDIR}/udev/devices/null c 1 3 ;\
+		if ! [ -e ${DESTDIR}/lib/udev/devices/null ]; then \
+			mknod -m 0666 ${DESTDIR}/lib/udev/devices/null c 1 3 ;\
 		fi \
 	fi
 	@if [ "$$UID" = "0" ]; then \
-		if ! [ -e ${DESTDIR}${LIBDIR}/udev/devices/console ]; then \
-			mknod -m 0600 ${DESTDIR}${LIBDIR}/udev/devices/console c 5 1 ;\
+		if ! [ -e ${DESTDIR}/lib/udev/devices/console ]; then \
+			mknod -m 0600 ${DESTDIR}/lib/udev/devices/console c 5 1 ;\
 		fi \
 	fi
 	@if [ "$$UID" != "0" ]; then \
-		if ! [ -e ${DESTDIR}${LIBDIR}/udev/devices/null ]; then \
+		if ! [ -e ${DESTDIR}/lib/udev/devices/null ]; then \
 			echo "You will need to issue the following command as the root user" ;\
 			echo "" ;\
-			echo "mknod -m 0666 ${DESTDIR}${LIBDIR}/udev/devices/null c 1 3" ;\
+			echo "mknod -m 0666 ${DESTDIR}/lib/udev/devices/null c 1 3" ;\
 		fi \
 	fi
 	@if [ "$$UID" != "0" ]; then \
-		if ! [ -e ${DESTDIR}${LIBDIR}/udev/devices/console ]; then \
-			echo "mknod -m 0600 ${DESTDIR}${LIBDIR}/udev/devices/console c 5 1" ;\
+		if ! [ -e ${DESTDIR}/lib/udev/devices/console ]; then \
+			echo "mknod -m 0600 ${DESTDIR}/lib/udev/devices/console c 5 1" ;\
 			echo "" ;\
 		fi \
 	fi
@@ -65,7 +64,6 @@ install-bootscripts: create-dirs create-service-dir udev_device_dirs udev_device
 	install -m ${MODE} clfs/init.d/modules       ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/mountfs       ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/mountkernfs   ${EXTDIR}/rc.d/init.d/
-	install -m ${MODE} clfs/init.d/network       ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/rc            ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/reboot        ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/sendsignals   ${EXTDIR}/rc.d/init.d/
@@ -75,24 +73,17 @@ install-bootscripts: create-dirs create-service-dir udev_device_dirs udev_device
 	install -m ${MODE} clfs/init.d/sysctl        ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/template      ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/udev          ${EXTDIR}/rc.d/init.d/
-	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc0.d/K80network
 	ln -sf ../init.d/rsyslog     ${EXTDIR}/rc.d/rc0.d/K90rsyslog
 	ln -sf ../init.d/sendsignals ${EXTDIR}/rc.d/rc0.d/S60sendsignals
 	ln -sf ../init.d/mountfs     ${EXTDIR}/rc.d/rc0.d/S70mountfs
 	ln -sf ../init.d/swap        ${EXTDIR}/rc.d/rc0.d/S80swap
 	ln -sf ../init.d/localnet    ${EXTDIR}/rc.d/rc0.d/S90localnet
 	ln -sf ../init.d/halt        ${EXTDIR}/rc.d/rc0.d/S99halt
-	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc1.d/K80network
 	ln -sf ../init.d/rsyslog     ${EXTDIR}/rc.d/rc1.d/S10rsyslog
-	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc2.d/S20network
 	ln -sf ../init.d/rsyslog     ${EXTDIR}/rc.d/rc2.d/S10rsyslog
 	ln -sf ../init.d/rsyslog     ${EXTDIR}/rc.d/rc3.d/S10rsyslog
-	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc3.d/S20network
 	ln -sf ../init.d/rsyslog     ${EXTDIR}/rc.d/rc4.d/S10rsyslog
-	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc4.d/S20network
 	ln -sf ../init.d/rsyslog     ${EXTDIR}/rc.d/rc5.d/S10rsyslog
-	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc5.d/S20network
-	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc6.d/K80network
 	ln -sf ../init.d/rsyslog     ${EXTDIR}/rc.d/rc6.d/K90rsyslog
 	ln -sf ../init.d/sendsignals ${EXTDIR}/rc.d/rc6.d/S60sendsignals
 	ln -sf ../init.d/mountfs     ${EXTDIR}/rc.d/rc6.d/S70mountfs
@@ -116,11 +107,22 @@ install-bootscripts: create-dirs create-service-dir udev_device_dirs udev_device
 	if [ ! -f ${EXTDIR}/sysconfig/i18n        ]; then install -m ${CONFMODE} clfs/sysconfig/i18n        ${EXTDIR}/sysconfig/; fi
 	if [ ! -f ${EXTDIR}/sysconfig/modules     ]; then install -m ${CONFMODE} clfs/sysconfig/modules     ${EXTDIR}/sysconfig/; fi
 	if [ ! -f ${EXTDIR}/sysconfig/rc          ]; then install -m ${CONFMODE} clfs/sysconfig/rc          ${EXTDIR}/sysconfig/; fi
+	@$(MAKE) mknod_devices
+
+install-network: create-dirs create-service-dir
+
+	install -m ${MODE} clfs/init.d/network       ${EXTDIR}/rc.d/init.d/
+	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc0.d/K80network
+	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc1.d/K80network
+	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc2.d/S20network
+	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc3.d/S20network
+	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc4.d/S20network
+	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc5.d/S20network
+	ln -sf ../init.d/network     ${EXTDIR}/rc.d/rc6.d/K80network
 	install                   -m ${MODE} clfs/sysconfig/network-devices/ifup   ${EXTDIR}/sysconfig/network-devices/
 	install                   -m ${MODE} clfs/sysconfig/network-devices/ifdown ${EXTDIR}/sysconfig/network-devices/
 	install                   -m ${MODE} clfs/sysconfig/network-devices/services/ipv4-static       ${EXTDIR}/sysconfig/network-devices/services/
 	install                   -m ${MODE} clfs/sysconfig/network-devices/services/ipv4-static-route ${EXTDIR}/sysconfig/network-devices/services/
-	@$(MAKE) mknod_devices
 
 install-service-mtu: create-service-dir
 	install -m ${MODE} contrib/sysconfig/network-devices/services/mtu ${EXTDIR}/sysconfig/network-devices/services
@@ -1204,7 +1206,10 @@ uninstall-xinetd:
 	rm -f ${EXTDIR}/rc.d/rc6.d/K49xinetd
 
 .PHONY: all create-dirs create-service-dir \
-        install \
+	install \
+	install-bootscripts \
+	install-network \
+	install-dhcpcd \
 	install-service-mtu \
 	minimal \
 	install-lcd \
@@ -1249,6 +1254,7 @@ uninstall-xinetd:
 	install-sshd \
 	install-stunnel \
 	install-svn \
+	install-sysklogd \
 	install-syslog-ng \
 	install-sysstat \
 	install-vsftpd \
