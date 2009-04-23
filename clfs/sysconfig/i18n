@@ -15,7 +15,7 @@
 # console.  You can find a good selection of fonts in /usr/share/consolefonts
 # To use the default console font, comment out the FONT setting below.
 #
-FONT="default8x16"
+FONT="LatArCyrHeb-16"
 
 # CONSOLETRANSLATION is the charset map file to use.  Leave commented to use
 # the default one.  Have a look in /usr/share/consoletrans for a selection of
@@ -31,7 +31,7 @@ KEYMAP=us
 # Should we first load the 'windowkeys' console keymap?  Anyone using
 # a windows keyboard will select true. Everyone else select no.
 #
-WINDOWS_KEYBOARD=yes
+WINDOWS_KEYBOARD=no
 
 # The maps to load for extended keyboards.  Most users will leave this as is.
 #
