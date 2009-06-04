@@ -131,6 +131,13 @@ boot_mesg()
 	# Print the message to the screen
 	${ECHO} ${ECHOPARM} -e "${2}${1}"
 	
+	# Message Log
+	if [ -z "${BOOTMESG}" ]
+	then
+		BOOTMESG="${1}"
+	else
+		BOOTMESG="${BOOTMESG} ${1}"
+	fi
 }
 
 boot_mesg_flush()
@@ -139,6 +146,7 @@ boot_mesg_flush()
 	STRING_LENGTH="0"
 	if [ "$LOGGING" ]; then
 		boot_log "${BOOTMESG}${@}"
+		BOOTMESG=""
 	fi
 }
 
@@ -164,6 +172,7 @@ echo_ok()
 	fi
 	${ECHO} -n -e "${CURS_UP}${SET_COL}${BRACKET}[${SUCCESS}  OK  ${BRACKET}]"
 	${ECHO} -e "${NORMAL}"
+	BOOTMESG="${BOOTMESG} [ OK ]"
 	boot_mesg_flush
 }
 
@@ -180,6 +189,7 @@ echo_failure()
 	fi
 	${ECHO} -n -e "${CURS_UP}${SET_COL}${BRACKET}[${FAILURE} FAIL ${BRACKET}]"
 	${ECHO} -e "${NORMAL}"
+	BOOTMESG="${BOOTMESG} [ FAIL ]"
 	boot_mesg_flush
 }
 
@@ -196,6 +206,7 @@ echo_warning()
 	fi
 	${ECHO} -n -e "${CURS_UP}${SET_COL}${BRACKET}[${WARNING} WARN ${BRACKET}]"
 	${ECHO} -e "${NORMAL}"
+	BOOTMESG="${BOOTMESG} [ WARN ]"
 	boot_mesg_flush
 }
 
