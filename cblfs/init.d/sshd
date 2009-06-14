@@ -14,6 +14,22 @@ pidfile=/var/run/sshd.pid
 
 case "$1" in
     start)
+        if [ ! -f /etc/ssh/ssh_host_key ]; then
+          boot_mesg "Generating /etc/ssh/ssh_host_key"
+          ssh-keygen -t rsa1 -f /etc/ssh/ssh_host_key -N ""
+          evaluate_retval
+        fi
+        if [ ! -f /etc/ssh/ssh_host_dsa_key ]; then
+          boot_mesg "Generating /etc/ssh/ssh_host_dsa_key"
+          ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -N ""
+          evaluate_retval
+        fi
+        if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
+          boot_mesg "Generating /etc/ssh/ssh_host_rsa_key"
+          ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ""
+          evaluate_retval
+        fi
+
         boot_mesg "Starting SSH Server..."
         # Also prevent ssh from being killed by out of memory conditions
         loadproc -p $pidfile /usr/sbin/sshd 
