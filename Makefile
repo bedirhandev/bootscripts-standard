@@ -14,10 +14,11 @@ all:
 
 .PHONY: dist
 dist:
-	rm -r "dist/bootscripts-cross-lfs-$(VERSION)"
+	rm -rf "dist/bootscripts-cross-lfs-$(VERSION)"
 	mkdir -p "dist/bootscripts-cross-lfs-$(VERSION)"
 	tar --exclude dist -c * | tar -x -C "dist/bootscripts-cross-lfs-$(VERSION)"
 	(cd dist; tar -cjf "bootscripts-cross-lfs-$(VERSION).tar.bz2" "bootscripts-cross-lfs-$(VERSION)")
+	rm -rf "dist/bootscripts-cross-lfs-$(VERSION)"
 
 create-dirs:
 	install -d -m ${DIRMODE} ${EXTDIR}/rc.d/rc{0,1,2,3,4,5,6,sysinit}.d
