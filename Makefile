@@ -1,4 +1,4 @@
-VERSION		:= 1.2-pre9
+VERSION		:= 1.2-pre10
 
 ETCDIR		:= /etc
 SHELL		:= /bin/bash
@@ -105,8 +105,8 @@ install-bootscripts: create-dirs create-service-dir udev_device_dirs udev_device
 	ln -sf ../init.d/consolelog  ${EXTDIR}/rc.d/rcsysinit.d/S02consolelog
 	ln -sf ../init.d/modules     ${EXTDIR}/rc.d/rcsysinit.d/S05modules
 	ln -sf ../init.d/udev        ${EXTDIR}/rc.d/rcsysinit.d/S10udev
+	ln -sf ../init.d/setclock    ${EXTDIR}/rc.d/rcsysinit.d/S15setclock
 	ln -sf ../init.d/checkfs     ${EXTDIR}/rc.d/rcsysinit.d/S20checkfs
-	ln -sf ../init.d/setclock    ${EXTDIR}/rc.d/rcsysinit.d/S25setclock
 	ln -sf ../init.d/mountfs     ${EXTDIR}/rc.d/rcsysinit.d/S30mountfs
 	ln -sf ../init.d/swap        ${EXTDIR}/rc.d/rcsysinit.d/S40swap
 	ln -sf ../init.d/cleanfs     ${EXTDIR}/rc.d/rcsysinit.d/S50cleanfs
