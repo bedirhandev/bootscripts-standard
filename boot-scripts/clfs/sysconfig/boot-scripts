@@ -1,0 +1,24 @@
+########################################################################
+# Begin /etc/sysconfig/boot-scripts
+#
+# Description : Boot-scripts Config System
+#
+# Authors     :
+#
+# Version     : 00.00
+#
+# Notes       : Controls different aspects of the boot-scripts.
+#
+########################################################################
+
+# Enable/disable interactive Prompts
+# Enable	- INTERACTIVE=y
+# Disable 	- INTERACTIVE=
+INTERACTIVE=y
+
+# Enable/disable Logging of bootup
+# Enable	- LOGGING=y
+# Disable 	- LOGGING=
+LOGGING=y
+
+# End /etc/sysconfig/boot-scripts

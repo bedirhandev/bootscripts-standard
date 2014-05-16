@@ -1,0 +1,37 @@
+SetClock configuration:
+	Script Files:
+		rc.d/init.d/setclock
+
+	Configuration Files:
+		sysconfig/clock
+		- UTC: 1 assumes hwclock is in UTC
+		       0 assumes hwclock is in local time
+
+CleanFS configuration:
+	Script Files:
+		rc.d/init.d/cleanfs
+
+	Configuration Files:
+		/etc/sysconfig/createfiles
+		Each line is parsed, using space as a deliminator.
+		[NAME] [TYPE] [PERMISSIONS] [USER] [GROUP]
+		The below fields are currently only used on dev type.
+		([DEV TYPE] [MAJOR#] [MINOR#])
+		Name:
+			File/Directory/Device name
+		Type:
+			dir: creates a directory
+			file: creates a file
+			dev: creates a device
+		Permissions:
+			chmod the created file
+		User/Group:
+			chown the created file/dir to this user/group
+		Dev Type:
+			char:  character [needs MAJOR#, MINOR#]
+			block: block [needs MAJOR#, MINOR#]
+			pipe:  pipe
+		Major#:
+			Used by character and block devices.
+		Minor#:
+			Used by character and block devices.
