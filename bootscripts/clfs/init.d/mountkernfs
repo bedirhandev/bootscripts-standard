@@ -21,18 +21,25 @@ case "${1}" in
 
 		if ! mountpoint /proc >/dev/null; then
 			boot_mesg -n " /proc" ${NORMAL}
-			mount -n /proc || failed=1
+			mount -n -o nosuid,noexec,nodev -t proc proc /proc || failed=1
 		fi
 
 		if ! mountpoint /sys >/dev/null; then
 			boot_mesg -n " /sys" ${NORMAL}
-			mount -n /sys || failed=1
+			mount -n -o nosuid,noexec,nodev -t sysfs sys /sys || failed=1
 		fi
-
-		boot_mesg "" ${NORMAL}
-
+		if ! mountpoint /run >/dev/null; then
+			boot_mesg -n " /run" ${NORMAL}
+			mount -n -o mode=0755,nosuid,nodev -t tmpfs run /run || failed=1
+		fi
+		if ! mountpoint /dev >/dev/null; then
+			boot_mesg -n " /dev" ${NORMAL}
+			mount -n -o mode=0755,nosuid -t devtmpfs dev /dev || failed=1
+		fi
 		(exit ${failed})
-		evaluate_retval
+					
+                mkdir -m 1777 /run/lock
+                mkdir -p /dev/{pts,shm}           
 		;;
 
 	*)

@@ -1,4 +1,4 @@
-VERSION		:= 1.2-pre10
+VERSION		:= 1.2-pre11
 
 ETCDIR		:= /etc
 SHELL		:= /bin/bash
@@ -419,6 +419,26 @@ install-kerberos: create-dirs
 	ln -sf ../init.d/kerberos ${EXTDIR}/rc.d/rc4.d/S28kerberos
 	ln -sf ../init.d/kerberos ${EXTDIR}/rc.d/rc5.d/S28kerberos
 	ln -sf ../init.d/kerberos ${EXTDIR}/rc.d/rc6.d/K42kerberos
+
+install-LCDd: create-dirs
+	install -m ${MODE} cblfs/init.d/LCDd ${EXTDIR}/rc.d/init.d/
+	ln -sf  ../init.d/LCDd ${EXTDIR}/rc.d/rc0.d/K65LCDd
+	ln -sf  ../init.d/LCDd ${EXTDIR}/rc.d/rc1.d/K65LCDd
+	ln -sf  ../init.d/LCDd ${EXTDIR}/rc.d/rc2.d/K65LCDd
+	ln -sf  ../init.d/LCDd ${EXTDIR}/rc.d/rc3.d/S35LCDd
+	ln -sf  ../init.d/LCDd ${EXTDIR}/rc.d/rc4.d/S35LCDd
+	ln -sf  ../init.d/LCDd ${EXTDIR}/rc.d/rc5.d/S35LCDd
+	ln -sf  ../init.d/LCDd ${EXTDIR}/rc.d/rc6.d/K65LCDd
+
+install-lcdproc: install-LCDd create-dirs
+	install -m ${MODE} cblfs/init.d/lcdproc ${EXTDIR}/rc.d/init.d/
+	ln -sf  ../init.d/lcdproc ${EXTDIR}/rc.d/rc0.d/K60lcdproc
+	ln -sf  ../init.d/lcdproc ${EXTDIR}/rc.d/rc1.d/K60lcdproc
+	ln -sf  ../init.d/lcdproc ${EXTDIR}/rc.d/rc2.d/K60lcdproc
+	ln -sf  ../init.d/lcdproc ${EXTDIR}/rc.d/rc3.d/S40lcdproc
+	ln -sf  ../init.d/lcdproc ${EXTDIR}/rc.d/rc4.d/S40lcdproc
+	ln -sf  ../init.d/lcdproc ${EXTDIR}/rc.d/rc5.d/S40lcdproc
+	ln -sf  ../init.d/lcdproc ${EXTDIR}/rc.d/rc6.d/K60lcdproc
 
 install-lisa: create-dirs
 	install -m ${MODE} cblfs/init.d/lisa       ${EXTDIR}/rc.d/init.d/
@@ -908,6 +928,26 @@ uninstall-kerberos:
 	rm -f ${EXTDIR}/rc.d/rc5.d/S28kerberos
 	rm -f ${EXTDIR}/rc.d/rc6.d/K42kerberos
 
+uninstall-LCDd:
+	rm -f ${EXTDIR}/rc.d/init.d/LCDd
+	rm -f ${EXTDIR}/rc.d/rc0.d/K65LCDd
+	rm -f ${EXTDIR}/rc.d/rc1.d/K65LCDd
+	rm -f ${EXTDIR}/rc.d/rc2.d/K65LCDd
+	rm -f ${EXTDIR}/rc.d/rc3.d/S35LCDd
+	rm -f ${EXTDIR}/rc.d/rc4.d/S35LCDd
+	rm -f ${EXTDIR}/rc.d/rc5.d/S35LCDd
+	rm -f ${EXTDIR}/rc.d/rc6.d/K65LCDd
+
+uninstall-lcdproc: uninstall-LCDd
+	rm -f ${EXTDIR}/rc.d/init.d/lcdproc
+	rm -f ${EXTDIR}/rc.d/rc0.d/K60lcdproc
+	rm -f ${EXTDIR}/rc.d/rc1.d/K60lcdproc
+	rm -f ${EXTDIR}/rc.d/rc2.d/K60lcdproc
+	rm -f ${EXTDIR}/rc.d/rc3.d/S40lcdproc
+	rm -f ${EXTDIR}/rc.d/rc4.d/S40lcdproc
+	rm -f ${EXTDIR}/rc.d/rc5.d/S40lcdproc
+	rm -f ${EXTDIR}/rc.d/rc6.d/K60lcdproc
+
 uninstall-lisa:
 	rm -f ${EXTDIR}/rc.d/init.d/lisa
 	rm -f ${EXTDIR}/rc.d/rc0.d/K35lisa
@@ -1244,6 +1284,8 @@ uninstall-xinetd:
 	install-heimdal \
 	install-iptables \
 	install-kerberos \
+	install-LCDd \
+	install-lcdproc \
 	install-lisa \
 	install-lprng \
 	install-mysql \
@@ -1286,6 +1328,8 @@ uninstall-xinetd:
 	uninstall-heimdal \
 	uninstall-iptables \
 	uninstall-kerberos \
+	uninstall-LCDd \
+	uninstall-lcdproc \
 	uninstall-lisa \
 	uninstall-lprng \
 	uninstall-mysql \

@@ -21,22 +21,10 @@
 
 case "$1" in
     start)
-	boot_mesg "Creating /dev in tmpfs..."
-	mount -n -t tmpfs -o mode=0755 udev /dev
-	evaluate_retval
-
-	boot_mesg "Copying static entries..."
-	cp --preserve=all --recursive --remove-destination /lib/udev/devices/* /dev
-	evaluate_retval
-	
-	boot_mesg "Setting Permissons on /dev/shm..."
-	chmod 1777 /dev/shm
-	evaluate_retval
-
 	echo "" > /sys/kernel/uevent_helper
 
 	# start udevd
-	boot_mesg "Starting udevd..."
+	boot_mesg "\nStarting udevd..."
 	/sbin/udevd --daemon
 	evaluate_retval
 
@@ -44,10 +32,11 @@ case "$1" in
 	boot_mesg "Performing Coldplugging..."
 
 	# unlikely, but we may be faster than the first event
-	mkdir -p /dev/.udev/queue
+	#mkdir -p /run/.udev/queue
 
 	# configure all devices
-	/sbin/udevadm trigger
+	/sbin/udevadm trigger --action=add --type=subsystems
+	/sbin/udevadm trigger --action=add --type=devices
 	
 	# this replaces the old loop, exits after all devices are done
 	/sbin/udevadm settle
@@ -69,23 +58,6 @@ case "$1" in
 
     status)
 	statusproc /sbin/udevd
-	;;
-
-    reload)
-	boot_mesg "Reloading udev rules..."
-	udevadm control reload_rules
-	cp --preserve=all --recursive --update /lib/udev/devices/* /dev
-	evaluate_retval
-	;;
-
-    force-reload)
-	boot_mesg "Updating all available device nodes in /dev..."
-	udevadm control reload_rules
-	rm -rf /dev/.udev /dev/disk
-	cp --preserve=all --recursive --update /lib/udev/devices/* /dev
-	/sbin/udevadm trigger
-	/sbin/udevadm settle
-	evaluate_retval
 	;;
 
     *)
