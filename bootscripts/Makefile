@@ -83,7 +83,6 @@ install-bootscripts: create-dirs create-service-dir
 	if [ ! -f ${EXTDIR}/sysconfig/i18n        ]; then install -m ${CONFMODE} clfs/sysconfig/i18n        ${EXTDIR}/sysconfig/; fi
 	if [ ! -f ${EXTDIR}/sysconfig/modules     ]; then install -m ${CONFMODE} clfs/sysconfig/modules     ${EXTDIR}/sysconfig/; fi
 	if [ ! -f ${EXTDIR}/sysconfig/rc          ]; then install -m ${CONFMODE} clfs/sysconfig/rc          ${EXTDIR}/sysconfig/; fi
-	@$(MAKE) mknod_devices
 
 install-network: create-dirs create-service-dir
 
@@ -135,7 +134,6 @@ install-minimal: create-dirs create-service-dir
 	ln -sf ../init.d/setclock    ${EXTDIR}/rc.d/rcsysinit.d/S60setclock
 	if [ ! -f ${EXTDIR}/sysconfig/rc          ]; then install -m ${CONFMODE} clfs/sysconfig/rc          ${EXTDIR}/sysconfig/; fi
 	if [ ! -f ${EXTDIR}/sysconfig/createfiles ]; then install -m ${CONFMODE} clfs/sysconfig/createfiles ${EXTDIR}/sysconfig/; fi
-	@$(MAKE) mknod_devices
 
 install-raq2: create-dirs
 	install -m ${MODE} clfs/init.d/paneld        ${EXTDIR}/rc.d/init.d/
