@@ -28,42 +28,7 @@ create-dirs:
 create-service-dir:
 	install -d -m ${DIRMODE} ${EXTDIR}/sysconfig/network-devices/services
 
-udev_device_dirs:
-	install -d -m ${DIRMODE} ${DESTDIR}/lib/udev/devices/{pts,shm,net}
-
-udev_device_links: udev_device_dirs
-	ln -snf /proc/self/fd ${DESTDIR}/lib/udev/devices/fd
-	ln -snf /proc/self/fd/0 ${DESTDIR}/lib/udev/devices/stdin
-	ln -snf /proc/self/fd/1 ${DESTDIR}/lib/udev/devices/stdout
-	ln -snf /proc/self/fd/2 ${DESTDIR}/lib/udev/devices/stderr
-	ln -snf /proc/kcore ${DESTDIR}/lib/udev/devices/core
-
-mknod_devices: udev_device_dirs
-	@if [ "$$UID" = "0" ]; then \
-		if ! [ -e ${DESTDIR}/lib/udev/devices/null ]; then \
-			mknod -m 0666 ${DESTDIR}/lib/udev/devices/null c 1 3 ;\
-		fi \
-	fi
-	@if [ "$$UID" = "0" ]; then \
-		if ! [ -e ${DESTDIR}/lib/udev/devices/console ]; then \
-			mknod -m 0600 ${DESTDIR}/lib/udev/devices/console c 5 1 ;\
-		fi \
-	fi
-	@if [ "$$UID" != "0" ]; then \
-		if ! [ -e ${DESTDIR}/lib/udev/devices/null ]; then \
-			echo "You will need to issue the following command as the root user" ;\
-			echo "" ;\
-			echo "mknod -m 0666 ${DESTDIR}/lib/udev/devices/null c 1 3" ;\
-		fi \
-	fi
-	@if [ "$$UID" != "0" ]; then \
-		if ! [ -e ${DESTDIR}/lib/udev/devices/console ]; then \
-			echo "mknod -m 0600 ${DESTDIR}/lib/udev/devices/console c 5 1" ;\
-			echo "" ;\
-		fi \
-	fi
-
-install-bootscripts: create-dirs create-service-dir udev_device_dirs udev_device_links
+install-bootscripts: create-dirs create-service-dir
 
 	install -m ${MODE} clfs/init.d/checkfs       ${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/cleanfs       ${EXTDIR}/rc.d/init.d/
@@ -138,7 +103,7 @@ install-network: create-dirs create-service-dir
 install-service-mtu: create-service-dir
 	install -m ${MODE} contrib/sysconfig/network-devices/services/mtu ${EXTDIR}/sysconfig/network-devices/services
 
-install-minimal: create-dirs create-service-dir udev_device_dirs udev_device_links
+install-minimal: create-dirs create-service-dir
 	sed -e 's|/bin:/usr/bin:/sbin:/usr/sbin|/tools/bin:/tools/sbin:/bin:/sbin|g' clfs/init.d/functions > clfs/init.d/functions.minimal
 	install -m ${MODE} clfs/init.d/checkfs       		${EXTDIR}/rc.d/init.d/
 	install -m ${MODE} clfs/init.d/cleanfs       		${EXTDIR}/rc.d/init.d/
@@ -209,7 +174,7 @@ install-service-ipx: create-service-dir
 install-service-pppoe: create-service-dir
 	install -m ${MODE} cblfs/sysconfig/network-devices/services/pppoe    ${EXTDIR}/sysconfig/network-devices/services
 
-install-netboot: create-dirs create-service-dir udev_device_dirs udev_device_links
+install-netboot: create-dirs create-service-dir
 	rm -rf ${EXTDIR}/rc.d
 	install -d -m ${DIRMODE} ${EXTDIR}/rc.d
 	install -m ${MODE} netboot/rc.0         ${EXTDIR}/rc.d/

@@ -23,7 +23,6 @@ echo ""
 
 echo "Starting udev"
 mount -n -t tmpfs -o mode=0755 udev /dev
-cp --preserve=all --recursive --remove-destination  /lib/udev/devices/* /dev
 chmod 1777 /dev/shm
 echo "" > /sys/kernel/uevent_helper
 /sbin/udevd --daemon
