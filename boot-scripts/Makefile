@@ -17,7 +17,7 @@ dist:
 	rm -rf "dist/boot-scripts-cross-lfs-$(VERSION)"
 	mkdir -p "dist/boot-scripts-cross-lfs-$(VERSION)"
 	tar --exclude dist -c * | tar -x -C "dist/boot-scripts-cross-lfs-$(VERSION)"
-	(cd dist; tar -cjf "boot-scripts-cross-lfs-$(VERSION).tar.bz2" "boot-scripts-cross-lfs-$(VERSION)")
+	(cd dist; tar -cJf "boot-scripts-cross-lfs-$(VERSION).tar.xz" "boot-scripts-cross-lfs-$(VERSION)")
 	rm -rf "dist/boot-scripts-cross-lfs-$(VERSION)"
 
 create-dirs:

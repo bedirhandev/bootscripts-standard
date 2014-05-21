@@ -1,3 +1,7 @@
+Chris - May 21, 2014
+	* Changed dist target in Makefile to generate a .xz tarball instead
+	  of .bz2
+
 Chris - May 17, 2014
 	* Removed obsolete ONHOTPLUG reference from README
 	* Removed obsolete commands to create and populate /lib/udev/devices
