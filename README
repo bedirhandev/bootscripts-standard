@@ -1,3 +1,7 @@
 bootscripts is for sysvinit bootscripts system
 
 boot-scripts are scripts for the boot method used currently in the systemd book
+
+To generate a distributable tarball in either target directory, run:
+
+make dist
