@@ -1,4 +1,4 @@
-DATE        := `date +%Y%m%d`
+DATE        := 20140521 #YYYYMMDD
 VERSION		:= 3.0-${DATE}
 
 ETCDIR		:= /etc
