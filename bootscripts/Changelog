@@ -1,3 +1,6 @@
+William - May 21, 2014
+    * Change versioning to drop Pre1 and use a date
+
 Chris - May 21, 2014
 	* Changed dist target in Makefile to generate a .xz tarball instead
 	  of .bz2
