@@ -2,6 +2,6 @@ bootscripts/ is for the bootscripts with the sysvinit book
 
 boot-scripts/ is for the boot method with the systemd book
 
-To generate a distributable tarball in either target directory, run:
+To generate a distributable tarball, run in either directory:
 
 make dist
