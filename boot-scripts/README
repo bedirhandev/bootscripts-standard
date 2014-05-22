@@ -13,7 +13,7 @@ CleanFS configuration:
 
 	Configuration Files:
 		/etc/sysconfig/createfiles
-		Each line is parsed, using space as a deliminator.
+		Each line is parsed, using space as a delimiter.
 		[NAME] [TYPE] [PERMISSIONS] [USER] [GROUP]
 		The below fields are currently only used on dev type.
 		([DEV TYPE] [MAJOR#] [MINOR#])
