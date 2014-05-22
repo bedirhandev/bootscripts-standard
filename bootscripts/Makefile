@@ -1,4 +1,5 @@
-VERSION		:= 3.0-pre1
+DATE        := `date +%Y%m%d`
+VERSION		:= 3.0-${DATE}
 
 ETCDIR		:= /etc
 SHELL		:= /bin/bash
