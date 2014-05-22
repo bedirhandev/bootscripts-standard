@@ -1,6 +1,6 @@
-bootscripts is for sysvinit bootscripts system
+bootscripts/ is for the bootscripts with the sysvinit book
 
-boot-scripts are scripts for the boot method used currently in the systemd book
+boot-scripts/ is for the boot method with the systemd book
 
 To generate a distributable tarball in either target directory, run:
 
