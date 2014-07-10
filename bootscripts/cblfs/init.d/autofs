@@ -145,7 +145,7 @@ case "$1" in
         ;;
 
     stop)
-        # Kill all automounters listed in /var/run
+        # Kill all automounters listed in /run
         ls ${piddir}/${pidroot}.*.pid 2>/dev/null |
         (
             while read pidpath

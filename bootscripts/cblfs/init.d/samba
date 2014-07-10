@@ -10,8 +10,8 @@
 . /etc/sysconfig/rc
 . $rc_functions
 
-smbdpid=/var/run/smbd.pid
-nmbdpid=/var/run/nmbd.pid
+smbdpid=/run/smbd.pid
+nmbdpid=/run/nmbd.pid
 
 case "$1" in
 	start)

@@ -13,14 +13,14 @@
 case "$1" in
 	start)  
 		boot_mesg -n "Starting KDC Server Daemon..."
-		if test -f "/var/run/kdc.pid"
+		if test -f "/run/kdc.pid"
 		then
 			boot_mesg "kdc already running!" ${WARNING}
 			echo_warning
 		else
 			/usr/sbin/kdc &
 			sleep 1
-			if test -f "/var/run/kdc.pid"
+			if test -f "/run/kdc.pid"
 			then
 				echo ""
 				echo_ok
@@ -30,14 +30,14 @@ case "$1" in
 			fi
 		fi
 		boot_mesg -n "Starting KDC kpasswdd Daemon..."
-		if test -f "/var/run/kpasswdd.pid"
+		if test -f "/run/kpasswdd.pid"
 		then
 			boot_mesg "kpasswdd already running!" ${WARNING}
 			echo_warning
 		else
 			/usr/sbin/kpasswdd &
 			sleep 1
-			if test -f "/var/run/kpasswdd.pid"
+			if test -f "/run/kpasswdd.pid"
 			then
 				echo ""
 				echo_ok
@@ -47,14 +47,14 @@ case "$1" in
 			fi
 		fi
 		boot_mesg -n "Starting KDC kadmind Daemon..."
-		if test -f "/var/run/kadmind.pid"
+		if test -f "/run/kadmind.pid"
 		then
 			boot_mesg "kadmind already running!" ${WARNING}
 			echo_warning
 		else
 			/usr/sbin/kadmind &
 			sleep 1
-			if test -f "/var/run/kadmind.pid"
+			if test -f "/run/kadmind.pid"
 			then
 				echo ""
 				echo_ok

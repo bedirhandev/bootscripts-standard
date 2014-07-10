@@ -10,7 +10,7 @@
 . /etc/sysconfig/rc
 . $rc_functions
 
-pidfile=/var/run/hald/pid
+pidfile=/run/hald/pid
 
 case "$1" in
 	start)

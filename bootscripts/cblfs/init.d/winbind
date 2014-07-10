@@ -10,7 +10,7 @@
 . /etc/sysconfig/rc
 . $rc_functions
 
-PIDFILE="/var/run/winbindd.pid"
+PIDFILE="/run/winbindd.pid"
 KILLDELAY="10"
 
 case "$1" in

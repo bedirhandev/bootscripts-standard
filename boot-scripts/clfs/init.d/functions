@@ -417,9 +417,9 @@ statusproc()
 		${ECHO} -e "${INFO}${base} is running with Process"\
 			"ID(s) ${pidlist}.${NORMAL}"
 	else
-		if [ -n "${base}" -a -e "/var/run/${base}.pid" ]; then
+		if [ -n "${base}" -a -e "/run/${base}.pid" ]; then
 			${ECHO} -e "${WARNING}${1} is not running but"\
-				"/var/run/${base}.pid exists.${NORMAL}"
+				"/run/${base}.pid exists.${NORMAL}"
 		else
 			if [ -n "${pidfile}" -a -e "${pidfile}" ]; then
 				${ECHO} -e "${WARNING}${1} is not running"\

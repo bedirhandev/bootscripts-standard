@@ -87,8 +87,8 @@ case "$1" in
 
 		# Remove a pid file that isn't done automatically
 		boot_mesg "Removing the rpc.statd pid file if it exists"
-		if [ -f /var/run/rpc.statd.pid ]; then
-		    rm -f /var/run/rpc.statd.pid
+		if [ -f /run/rpc.statd.pid ]; then
+		    rm -f /run/rpc.statd.pid
 		fi
 
 		# NFSD support only in 2.6 kernel

@@ -10,7 +10,7 @@
 . /etc/sysconfig/rc
 . $rc_functions
 
-pidfile=/var/run/gdm.pid
+pidfile=/run/gdm.pid
 
 export PATH=$PATH:/opt/gnome/bin:/opt/gnome/sbin
 

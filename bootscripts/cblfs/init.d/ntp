@@ -7,7 +7,7 @@
 . /etc/sysconfig/rc
 . $rc_functions
 
-pidfile=/var/run/ntpd.pid
+pidfile=/run/ntpd.pid
 
 case "$1" in
 	start)

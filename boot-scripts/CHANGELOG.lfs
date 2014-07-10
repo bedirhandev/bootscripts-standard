@@ -481,7 +481,7 @@ n/a - May 6, 2004
 2.1.0 - May 4, 2004
 
 	* Update to the console script, prevent install of the console script
-	* Chgrp /var/run/utmp to group utmp if it exists.
+	* Chgrp /run/utmp to group utmp if it exists.
 	* Moved udev from contrib to lfs
 	* Moved GATEWAY setup from /etc/rc.d/init.d/network to
 	  /etc/sysconfig/network-devices/services/static

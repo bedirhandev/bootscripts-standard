@@ -11,7 +11,7 @@
 . /etc/sysconfig/rc
 . $rc_functions
 
-pidfile=/var/run/gpm.pid
+pidfile=/run/gpm.pid
 
 if [ -f /etc/sysconfig/mouse ]
 	then

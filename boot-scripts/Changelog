@@ -1,3 +1,6 @@
+Chris - July 10, 2014
+	* Changed "/var/run" references to "/run"
+
 William - May 21, 2014
     * Change versioning to drop Pre1 and use a date
 

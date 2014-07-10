@@ -9,7 +9,7 @@
 . $rc_functions
 . $IFCONFIG
 
-pidfile="/var/run/dhcpcd-$1.pid"
+pidfile="/run/dhcpcd-$1.pid"
 
 case "$2" in
 	up)

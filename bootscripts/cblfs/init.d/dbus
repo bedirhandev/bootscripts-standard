@@ -10,8 +10,8 @@
 . /etc/sysconfig/rc
 . $rc_functions
 
-pidfile=/var/run/dbus/pid
-socket=/var/run/dbus/system_bus_socket
+pidfile=/run/dbus/pid
+socket=/run/dbus/system_bus_socket
 
 case "$1" in
         start)
